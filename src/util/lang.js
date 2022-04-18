@@ -18,6 +18,7 @@ exports.set = function set (obj, key, val) {
     set(obj._data, key, val)
     return
   }
+  //__ob__是否自己实现继承链?
   var ob = obj.__ob__
   if (!ob) {
     obj[key] = val
@@ -30,6 +31,7 @@ exports.set = function set (obj, key, val) {
     while (i--) {
       var vm = ob.vms[i]
       vm._proxy(key)
+      //digest，整理，概要
       vm._digest()
     }
   }
@@ -68,7 +70,7 @@ exports.delete = function (obj, key) {
  * @param {String} exp
  * @return {Boolean}
  */
-
+//literal value是啥意思？文本值？
 var literalValueRE = /^\s?(true|false|[\d\.]+|'[^']*'|"[^"]*")\s?$/
 exports.isLiteral = function (exp) {
   return literalValueRE.test(exp)
@@ -80,7 +82,7 @@ exports.isLiteral = function (exp) {
  * @param {String} str
  * @return {Boolean}
  */
-
+//Reserved 预定的，保留的
 exports.isReserved = function (str) {
   var c = (str + '').charCodeAt(0)
   return c === 0x24 || c === 0x5F
@@ -95,6 +97,7 @@ exports.isReserved = function (str) {
  */
 
 exports.toString = function (value) {
+  //undefined == null -> true
   return value == null
     ? ''
     : value.toString()
@@ -237,8 +240,8 @@ exports.toArray = function (list, start) {
  * @param {Object} to
  * @param {Object} from
  */
-
 exports.extend = function (to, from) {
+  // Object.keys()返回对象自身（不含继承）的可遍历(enumerable)的属性键名
   var keys = Object.keys(from)
   var i = keys.length
   while (i--) {
