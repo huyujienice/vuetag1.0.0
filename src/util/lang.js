@@ -143,7 +143,9 @@ exports.toBoolean = function (value) {
  * @param {String} str
  * @return {String | false}
  */
-
+// 将首尾的字符串标点符号去掉
+// String.fromCharCode(0x22) -> '"'
+// String.fromCharCode(0x27) -> "'"
 exports.stripQuotes = function (str) {
   var a = str.charCodeAt(0)
   var b = str.charCodeAt(str.length - 1)
@@ -158,7 +160,7 @@ exports.stripQuotes = function (str) {
  * @param {String} str
  * @return {String}
  */
-
+// 将连字符写法转换成驼峰写法
 exports.camelize = function (str) {
   return str.replace(/-(\w)/g, toUpper)
 }
@@ -173,7 +175,7 @@ function toUpper (_, c) {
  * @param {String} str
  * @return {String}
  */
-
+// 将驼峰写法转换成连字符写法
 exports.hyphenate = function (str) {
   return str
     .replace(/([a-z\d])([A-Z])/g, '$1-$2')
@@ -191,7 +193,7 @@ exports.hyphenate = function (str) {
  * @param {String} str
  * @return {String}
  */
-
+// 将连字符写法等写法转换为vue组件写法
 var classifyRE = /(?:^|[-_\/])(\w)/g
 exports.classify = function (str) {
   return str.replace(classifyRE, toUpper)
@@ -204,7 +206,7 @@ exports.classify = function (str) {
  * @param {Object} ctx
  * @return {Function}
  */
-
+// 比原生bind更快的bind写法
 exports.bind = function (fn, ctx) {
   return function (a) {
     var l = arguments.length
@@ -223,7 +225,8 @@ exports.bind = function (fn, ctx) {
  * @param {Number} [start] - start index
  * @return {Array}
  */
-
+// 将数组类似对象转换成真正的数组
+// Array.from, [...rest]
 exports.toArray = function (list, start) {
   start = start || 0
   var i = list.length - start
@@ -240,6 +243,7 @@ exports.toArray = function (list, start) {
  * @param {Object} to
  * @param {Object} from
  */
+// 将目标from的所有可遍历属性指向目标to，类似继承
 exports.extend = function (to, from) {
   // Object.keys()返回对象自身（不含继承）的可遍历(enumerable)的属性键名
   var keys = Object.keys(from)
@@ -294,7 +298,7 @@ exports.isArray = Array.isArray
  * @param {*} val
  * @param {Boolean} [enumerable]
  */
-
+// 双叹号(!!)的作用是将变量强制转换成boolean
 exports.define = function (obj, key, val, enumerable) {
   Object.defineProperty(obj, key, {
     value: val,
