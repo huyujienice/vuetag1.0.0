@@ -10,10 +10,6 @@
     "framework"
   ],
   "main": "src/vue.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/vuejs/vue.git"
-  },
   "bugs": "https://github.com/vuejs/vue/issues",
   "homepage": "http://vuejs.org",
   "scripts": {
