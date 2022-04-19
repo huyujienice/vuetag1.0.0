@@ -30,6 +30,7 @@ if (process.env.NODE_ENV !== 'production') {
       console.warn('[Vue warn]: ' + msg)
       /* istanbul ignore if */
       if (config.debug) {
+        //Error.prototype.stack 错误函数追踪方式，这个栈产生与最近一次调用最早的那次调用，返回原始的全局作用域调用
         console.warn((e || new Error('Warning Stack Trace')).stack)
       }
     }

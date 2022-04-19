@@ -1,3 +1,4 @@
+// !一些使用环境相关及nextTick实现
 // can we use __proto__?
 exports.hasProto = '__proto__' in {}
 
@@ -45,7 +46,7 @@ if (inBrowser && !exports.isIE9) {
  * @param {Function} cb
  * @param {Object} ctx
  */
-
+// 模拟一个异步执行队列
 exports.nextTick = (function () {
   var callbacks = []
   var pending = false

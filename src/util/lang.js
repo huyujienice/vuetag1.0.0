@@ -1,3 +1,5 @@
+// !语言类工具函数
+
 /**
  * Set a property on an object. Adds the new property and
  * triggers change notification if the property doesn't
@@ -24,6 +26,7 @@ exports.set = function set (obj, key, val) {
     obj[key] = val
     return
   }
+  //底下这些步骤具体作用？
   ob.convert(key, val)
   ob.notify()
   if (ob.vms) {
@@ -316,7 +319,7 @@ exports.define = function (obj, key, val, enumerable) {
  * @param {Number} wait
  * @return {Function} - the debounced function
  */
-
+// 防抖函数之类的?
 exports.debounce = function (func, wait) {
   var timeout, args, context, timestamp, result
   var later = function () {
@@ -362,7 +365,7 @@ exports.indexOf = function (arr, obj) {
  * @param {Function} fn
  * @return {Function}
  */
-
+// 创建异步回调的可取消版本，有何作用？
 exports.cancellable = function (fn) {
   var cb = function () {
     if (!cb.cancelled) {
@@ -383,7 +386,7 @@ exports.cancellable = function (fn) {
  * @param {*} b
  * @return {Boolean}
  */
-
+// 对象是否全等
 exports.looseEqual = function (a, b) {
   /* eslint-disable eqeqeq */
   return a == b || (
