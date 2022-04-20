@@ -119,7 +119,7 @@ exports.remove = function (el) {
  * @param {Element} el
  * @param {Element} target
  */
-
+// 将el添加至target的第一个子元素
 exports.prepend = function (el, target) {
   if (target.firstChild) {
     exports.before(el, target.firstChild)
@@ -134,7 +134,7 @@ exports.prepend = function (el, target) {
  * @param {Element} target
  * @param {Element} el
  */
-
+// Node.replaceChild()用指定的节点替换当前节点的一个子节点，并返回被替换掉的节点
 exports.replace = function (target, el) {
   var parent = target.parentNode
   if (parent) {
@@ -149,7 +149,7 @@ exports.replace = function (target, el) {
  * @param {String} event
  * @param {Function} cb
  */
-
+// shorthand简写
 exports.on = function (el, event, cb) {
   el.addEventListener(event, cb)
 }
