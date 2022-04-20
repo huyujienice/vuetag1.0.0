@@ -33,7 +33,8 @@ exports.query = function (el) {
  * @param {Node} node
  * @return {Boolean}
  */
-
+//document.documentElement总是会返回一个<html>元素，且它一定是该文档的根元素
+//Node.contains()返回一个Boolean值，来表示传入的节点是否为该节点的后代节点
 exports.inDoc = function (node) {
   var doc = document.documentElement
   var parent = node && node.parentNode
@@ -48,7 +49,8 @@ exports.inDoc = function (node) {
  * @param {Node} node
  * @param {String} attr
  */
-
+// Element.attributes属性返回该元素所有属性节点的一个实时集合，node上的attr即节点上树上所有属性，跟浏览器Element查看树上属性一致
+// 获取完毕属性后移除属性
 exports.attr = function (node, attr) {
   var val = node.getAttribute(attr)
   if (val !== null) {
@@ -64,7 +66,8 @@ exports.attr = function (node, attr) {
  * @param {String} name
  * @return {String|null}
  */
-
+// colon 冒号
+// 获取设置在节点上的vue绑定的属性
 exports.getBindAttr = function (node, name) {
   var val = exports.attr(node, ':' + name)
   if (val === null) {
@@ -79,7 +82,7 @@ exports.getBindAttr = function (node, name) {
  * @param {Element} el
  * @param {Element} target
  */
-
+//在target前面插入el
 exports.before = function (el, target) {
   target.parentNode.insertBefore(el, target)
 }
@@ -90,7 +93,8 @@ exports.before = function (el, target) {
  * @param {Element} el
  * @param {Element} target
  */
-
+//Node.nextSibling是一个只读属性，返回其父节点的childNodes列表中紧跟在其后面的兄弟节点，如果指定的节点为最后一个节点，则返回null
+//Node.appendChild将一个节点附加到指定父节点的子节点列表的末尾处
 exports.after = function (el, target) {
   if (target.nextSibling) {
     exports.before(el, target.nextSibling)
