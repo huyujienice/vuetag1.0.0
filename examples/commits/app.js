@@ -64,3 +64,7 @@ var demo = new Vue({
     }
   }
 })
+
+for(var i in demo){
+  console.log(i)
+}

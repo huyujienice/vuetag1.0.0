@@ -1,3 +1,4 @@
+//!真实dom节点操作
 var _ = require('./index')
 var config = require('../config')
 var transition = require('../transition')
@@ -172,7 +173,8 @@ exports.off = function (el, event, cb) {
  * @param {Element} el
  * @param {Strong} cls
  */
-
+//compatibility兼容
+//Element.classList是一个只读属性，返回一个元素的类属性的实时DOMTokenList集合
 exports.addClass = function (el, cls) {
   if (el.classList) {
     el.classList.add(cls)
@@ -215,7 +217,10 @@ exports.removeClass = function (el, cls) {
  * @param {Boolean} asFragment
  * @return {Element}
  */
-
+//TODO 插入伪类元素目的是什么？
+//CSS的content属性，用于在元素的::before和::after伪元素中插入内容。使用content属性插入的内容都是匿名的可替换元素
+//extract浓缩 raw原始的 asFragment碎片
+//createDocumentFragment创建一个新的空白的文档片段
 exports.extractContent = function (el, asFragment) {
   var child
   var rawContent
@@ -250,7 +255,7 @@ exports.trimNode = function (node) {
   trim(node, node.firstChild)
   trim(node, node.lastChild)
 }
-
+//nodeType===3,Node.TEXT_NODE,Element or Attr 中实际的文字
 function trim (parent, node) {
   if (node && node.nodeType === 3 && !node.data.trim()) {
     parent.removeChild(node)
@@ -287,7 +292,9 @@ exports.isTemplate = function (el) {
  *                            templates.
  * @return {Comment|Text}
  */
-
+//TODO 预处理创建锚点之类的？
+//document.createComment,用来创建并返回一个注释节点
+//document.createTextNode,创建一个新的文本节点
 exports.createAnchor = function (content, persist) {
   return config.debug
     ? document.createComment(content)
@@ -300,7 +307,7 @@ exports.createAnchor = function (content, persist) {
  * @param {Element} node
  * @return {String|undefined}
  */
-
+//找到v-ref
 var refRE = /^v-ref:/
 exports.findRef = function (node) {
   if (node.hasAttributes()) {

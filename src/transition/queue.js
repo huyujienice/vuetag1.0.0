@@ -2,6 +2,7 @@ var _ = require('../util')
 var queue = []
 var queued = false
 
+//!提供一个全局执行队列，在nextTick中执行提前塞入的任务
 /**
  * Push a job into the queue.
  *
@@ -20,7 +21,7 @@ exports.push = function (job) {
  * Flush the queue, and do one forced reflow before
  * triggering transitions.
  */
-
+//document.documentElement是会返回文档对象根元素的只读属性，如HTML文档的<html>元素
 function flush () {
   // Force layout
   var f = document.documentElement.offsetHeight
