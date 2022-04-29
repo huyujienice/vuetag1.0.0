@@ -220,7 +220,7 @@ p.leaveDone = function () {
  * Cancel any pending callbacks from a previously running
  * but not finished transition.
  */
-
+//取消pending回归状态之类的
 p.cancelPending = function () {
   this.op = this.cb = null
   var hasPending = false

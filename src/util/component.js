@@ -8,7 +8,7 @@ var _ = require('./index')
  * @param {Object} options
  * @return {Object|undefined}
  */
-
+//returen { id: exp } 或者 { id: exp, dynamic: true }
 exports.commonTagRE = /^(div|p|span|img|a|b|i|br|ul|ol|li|h1|h2|h3|h4|h5|h6|code|pre|table|th|td|tr|form|label|input|select|option|nav|article|section|header|footer)$/
 exports.checkComponent = function (el, options) {
   var tag = el.tagName.toLowerCase()
@@ -69,7 +69,7 @@ function getIsBinding (el) {
  * @param {Object} prop
  * @param {*} value
  */
-
+//单个prop传入值初始化
 exports.initProp = function (vm, prop, value) {
   if (exports.assertProp(prop, value)) {
     var key = prop.path
@@ -83,7 +83,7 @@ exports.initProp = function (vm, prop, value) {
  * @param {Object} prop
  * @param {*} value
  */
-
+//传入值校验之类的
 exports.assertProp = function (prop, value) {
   // if a prop is not provided and is not required,
   // skip the check.

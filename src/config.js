@@ -53,6 +53,7 @@ module.exports = {
     'transition',
     'partial'
   ],
+  
 
   /**
    * prop binding modes
@@ -78,7 +79,7 @@ module.exports = {
  *
  * @type {Array<String>}
  */
-
+//Interpolation delimiters 差值定界符
 var delimiters = ['{{', '}}']
 var unsafeDelimiters = ['{{{', '}}}']
 var textParser = require('./parsers/text')

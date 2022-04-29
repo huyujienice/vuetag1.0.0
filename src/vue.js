@@ -47,7 +47,7 @@ Vue.options = {
 /**
  * Build up the prototype
  */
-//Vue.prototype即vue实例原型
+//Vue.prototype即Vue实例原型对象
 var p = Vue.prototype
 
 /**

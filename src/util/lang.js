@@ -366,6 +366,7 @@ exports.indexOf = function (arr, obj) {
  * @return {Function}
  */
 // 创建异步回调的可取消版本，有何作用？
+// transition.js中使用到了
 exports.cancellable = function (fn) {
   var cb = function () {
     if (!cb.cancelled) {

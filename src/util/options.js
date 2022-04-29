@@ -13,13 +13,13 @@ var extend = _.extend
  * @param {*} childVal
  * @param {Vue} [vm]
  */
-
+//config.optionMergeStrategies有何作用？
 var strats = config.optionMergeStrategies = Object.create(null)
 
 /**
  * Helper that recursively merges two data objects together.
  */
-
+//当to有相同属性的时候不会被from属性覆盖
 function mergeData (to, from) {
   var key, toVal, fromVal
   for (key in from) {
