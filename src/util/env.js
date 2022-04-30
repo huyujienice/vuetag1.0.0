@@ -1,4 +1,4 @@
-// !一些使用环境相关及nextTick实现
+// !一些使用环境相关，动画过渡相关及nextTick实现
 // can we use __proto__?
 exports.hasProto = '__proto__' in {}
 
@@ -47,6 +47,8 @@ if (inBrowser && !exports.isIE9) {
  * @param {Object} ctx
  */
 // 模拟一个异步执行队列
+// 在一个loop内所有塞入的执行队列都会等待触发
+// 可能会同时存在多个nextTick队列
 exports.nextTick = (function () {
   var callbacks = []
   var pending = false

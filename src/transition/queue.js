@@ -2,7 +2,9 @@ var _ = require('../util')
 var queue = []
 var queued = false
 
-//!提供一个全局执行队列，在nextTick中执行提前塞入的任务
+//!提供一个全局执行队列，在nextTick中(同一个loop)执行提前塞入的任务
+// 全局唯一的执行队列，有何作用？
+
 /**
  * Push a job into the queue.
  *

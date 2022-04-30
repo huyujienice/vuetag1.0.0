@@ -4,11 +4,19 @@ var addClass = _.addClass
 var removeClass = _.removeClass
 var transitionEndEvent = _.transitionEndEvent
 var animationEndEvent = _.animationEndEvent
+// 判断过渡类型，是transition还是animation
 var transDurationProp = _.transitionProp + 'Duration'
 var animDurationProp = _.animationProp + 'Duration'
 
 var TYPE_TRANSITION = 1
 var TYPE_ANIMATION = 2
+
+/**
+ * CSS transitions 提供了一种在更改CSS属性时控制动画速度的方法。
+ * 其可以让属性变化成为一个持续一段时间的过程，而不是立即生效。
+ * transitionEndEvent 检测过渡transition是否完成，当过渡完成时触发一个事件
+ * animationEndEvent 事件会在一个CSS animation动画完成时触发
+ */
 
 /**
  * A Transition object that encapsulates the state and logic
@@ -36,7 +44,9 @@ function Transition (el, id, hooks, vm) {
   this.cb = null
   this.justEntered = false
   this.entered = this.left = false
+  //是transition还是animation缓存
   this.typeCache = {}
+  // 内部执行流程
   // bind
   var self = this
   ;['enterNextTick', 'enterDone', 'leaveNextTick', 'leaveDone']
@@ -284,7 +294,8 @@ p.callHookWithCb = function (type) {
  * @param {String} className
  * @return {Number}
  */
-
+// 通过style及window.getComputedStyle返回的对象依据duration是否为"0s"
+// 来判断是transition还是duration
 p.getCssTransitionType = function (className) {
   /* istanbul ignore if */
   if (
