@@ -1,6 +1,8 @@
 var _ = require('../util')
 var uid = 0
 
+//! 一个可以有多个指令订阅的可观察对象
+//! 使用发布订阅实现的收集更新函数（watcher addDep）和触发更新函数（watcher update）的对象
 /**
  * A dep is an observable that can have multiple
  * directives subscribing to it.

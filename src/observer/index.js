@@ -3,6 +3,8 @@ var Dep = require('./dep')
 var arrayMethods = require('./array')
 var arrayKeys = Object.getOwnPropertyNames(arrayMethods)
 
+
+// Observer 观察者
 /**
  * Observer class that are attached to each observed
  * object. Once attached, the observer converts target
@@ -205,6 +207,14 @@ function copyAugment (target, src, keys) {
  * @param {*} val
  */
 
+/**
+ * 
+ * 把数据处理成响应式对象
+ * 数据对象每个属性都创建一个单独的dep
+ * 假设这个属性键值是对象，则对这个属性值创建一个Observer的实例
+ */
+
+
 function defineReactive (obj, key, val) {
   var dep = new Dep()
   var childOb = Observer.create(val)
@@ -212,6 +222,7 @@ function defineReactive (obj, key, val) {
     enumerable: true,
     configurable: true,
     get: function metaGetter () {
+      // 收集订阅者watcher
       if (Dep.target) {
         dep.depend()
         if (childOb) {
@@ -221,6 +232,7 @@ function defineReactive (obj, key, val) {
       return val
     },
     set: function metaSetter (newVal) {
+      // dep调用方法通知watcher更新
       if (newVal === val) return
       val = newVal
       childOb = Observer.create(newVal)

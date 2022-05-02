@@ -21,6 +21,7 @@ exports.set = function set (obj, key, val) {
     return
   }
   //__ob__是否自己实现继承链?
+  //__ob__为对象观察者
   var ob = obj.__ob__
   if (!ob) {
     obj[key] = val

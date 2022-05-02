@@ -64,6 +64,9 @@ function Watcher (vm, expOrFn, cb, options) {
  * @param {Dep} dep
  */
 
+// 将watcher需添加的dep信息放入watcher中的newDeps及deps中保存，
+// 然后将watcher添加进dep
+
 Watcher.prototype.addDep = function (dep) {
   var id = dep.id
   if (!this.newDeps[id]) {
