@@ -25,6 +25,15 @@ var uid = 0
  * @constructor
  */
 
+/**
+ * expOrFn 表示什么？
+ * watcher.get中使用
+ * 
+ * cb 是什么的回调？
+ * 
+ * options.user 是否为用户设定
+ */
+
 function Watcher (vm, expOrFn, cb, options) {
   // mix in options
   if (options) {
@@ -237,6 +246,8 @@ Watcher.prototype.update = function (shallow) {
  * Will be called by the batcher.
  */
 
+//! 
+
 Watcher.prototype.run = function () {
   if (this.active) {
     var value = this.get()
@@ -329,6 +340,11 @@ Watcher.prototype.teardown = function () {
  * is collected as a "deep" dependency.
  *
  * @param {Object} obj
+ */
+
+/**
+ * 触发get?
+ * 如何实现具体逻辑
  */
 
 function traverse (obj) {

@@ -1,6 +1,10 @@
 var _ = require('./util')
 var config = require('./config')
 
+// batcher 分配器？
+// 将系统更新队列及用户更新队列区分开来，保证执行用户更新队列的时候，
+// 系统更新队列已经执行完毕
+
 // we have two separate queues: one for directive updates
 // and one for user watcher registered via $watch().
 // we want to guarantee directive updates to be called
