@@ -25,11 +25,13 @@ var uid = 0
  * @constructor
  */
 
+// TODO
 /**
  * expOrFn 表示什么？
- * watcher.get中使用
+ * watcher.get中使用，可能是执行渲染操作
  * 
  * cb 是什么的回调？
+ * 可能是数据变动的时候由watcher实例回调cb进行视图更新
  * 
  * options.user 是否为用户设定
  */
@@ -246,7 +248,7 @@ Watcher.prototype.update = function (shallow) {
  * Will be called by the batcher.
  */
 
-//! 
+//! 最终watcher执行逻辑,适当时执行回调cb逻辑
 
 Watcher.prototype.run = function () {
   if (this.active) {

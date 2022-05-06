@@ -58,6 +58,8 @@ module.exports = {
   /**
    * prop binding modes
    */
+  // 绑定方式？
+  // 是否是单向绑定和双向绑定
 
   _propBindingModes: {
     ONE_WAY: 0,
