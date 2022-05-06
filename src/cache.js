@@ -1,3 +1,5 @@
+//! LRU是Least Recently Used的缩写，即最近最少使用，是一种常见的页面置换算法，选择内存中最近未使用的页面予以淘汰
+
 /**
  * A doubly linked list-based Least Recently Used (LRU)
  * cache. Will keep most recently used items while
@@ -31,18 +33,24 @@ var p = Cache.prototype
  * @return {Entry|undefined}
  */
 
+// TODO
+// put方法是否有问题？如果碰到之前put进去过的怎么处理？
+
 p.put = function (key, value) {
   var entry = {
     key: key,
     value: value
   }
   this._keymap[key] = entry
+
   if (this.tail) {
+    // this.tail为上次添加的节点
     this.tail.newer = entry
     entry.older = this.tail
   } else {
     this.head = entry
   }
+  // 从尾部开始添加
   this.tail = entry
   if (this.size === this.limit) {
     return this.shift()
