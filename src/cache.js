@@ -35,16 +35,21 @@ var p = Cache.prototype
 
 // TODO
 // put方法是否有问题？如果碰到之前put进去过的怎么处理？
+// 当put量超出限额的时候，将head的节点删除
+// 当get到某一个值得时候，会调整位置，将get的值放置于tail头上，实现LRU
 
 p.put = function (key, value) {
   var entry = {
     key: key,
     value: value
+    //newer 指向下一个新添加节点
+    //older 指向上一个旧节点
   }
   this._keymap[key] = entry
 
   if (this.tail) {
-    // this.tail为上次添加的节点
+    // entry 为本次新添加节点
+    // this.tail 为上次添加的节点
     this.tail.newer = entry
     entry.older = this.tail
   } else {
@@ -88,6 +93,7 @@ p.shift = function () {
 p.get = function (key, returnEntry) {
   var entry = this._keymap[key]
   if (entry === undefined) return
+  // 当取值为tail头时，不需要实现调整位置
   if (entry === this.tail) {
     return returnEntry
       ? entry
