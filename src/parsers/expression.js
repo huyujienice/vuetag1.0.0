@@ -10,6 +10,11 @@ var allowedKeywords =
 var allowedKeywordsRE =
   new RegExp('^(' + allowedKeywords.replace(/,/g, '\\b|') + '\\b)')
 
+// allowedKeywordsRE = /^(Math\b|Date\b|this\b|true\b|false\b|null\b|undefined\b|Infinity\b|NaN\b|isNaN\b|isFinite\b|decodeURI\b|decodeURIComponent\b|encodeURI\b|encodeURIComponent\b|parseInt\b|parseFloat\b)/
+// \b 匹配一个 \w 的边界
+
+
+
 // keywords that don't make sense inside expressions
 var improperKeywords =
   'break,case,class,catch,const,continue,debugger,default,' +
@@ -21,12 +26,25 @@ var improperKeywordsRE =
   new RegExp('^(' + improperKeywords.replace(/,/g, '\\b|') + '\\b)')
 
 var wsRE = /\s/g
+// \s 匹配一个空白字符，包括空格，制表符，换页符和换行符
+
 var newlineRE = /\n/g
+// \n 匹配一个换行符
+
 var saveRE = /[\{,]\s*[\w\$_]+\s*:|('[^']*'|"[^"]*")|new |typeof |void /g
+// 
+
 var restoreRE = /"(\d+)"/g
+// 匹配双引号内数字
+
 var pathTestRE = /^[A-Za-z_$][\w$]*(\.[A-Za-z_$][\w$]*|\['.*?'\]|\[".*?"\]|\[\d+\]|\[[A-Za-z_$][\w$]*\])*$/
+// TODO path 路径是什么意思
+
 var pathReplaceRE = /[^\w$\.]([A-Za-z_$][\w$]*(\.[A-Za-z_$][\w$]*|\['.*?'\]|\[".*?"\])*)/g
+
 var booleanLiteralRE = /^(true|false)$/
+// 匹配true或者false
+
 
 /**
  * Save / Rewrite / Restore
@@ -171,6 +189,9 @@ function compilePathFns (exp) {
  * @return {Function|undefined}
  */
 
+// isolate 隔离 
+// optimization 优化
+
 function makeGetter (body) {
   try {
     return new Function('scope', 'return ' + body + ';')
@@ -195,6 +216,9 @@ function makeGetter (body) {
  * @param {String} body
  * @return {Function|undefined}
  */
+
+// rare 罕见
+// Left-Hand-Slide Expressions 左表达式，=号对左边的表达式有语法要求
 
 function makeSetter (body) {
   try {
