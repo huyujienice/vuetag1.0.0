@@ -35,6 +35,7 @@ var p = Cache.prototype
 
 // TODO
 // put方法是否有问题？如果碰到之前put进去过的怎么处理？
+// put方法没有问题，head节点指向的是使用得最少的点
 // 当put量超出限额的时候，将head的节点删除
 // 当get到某一个值得时候，会调整位置，将get的值放置于tail头上，实现LRU
 
