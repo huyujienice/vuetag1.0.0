@@ -56,6 +56,8 @@ var booleanLiteralRE = /^(true|false)$/
  * restore them after the path rewrite.
  */
 
+// letter sequences 字母顺序
+
 var saved = []
 
 /**
@@ -72,6 +74,9 @@ var saved = []
  * @param {String} isString - str if matched as a string
  * @return {String} - placeholder with index
  */
+
+// 当通过 new function 生成函数的时候需要将换行符替换为\\n
+// new function的body为字符串，如果需要有换行符就可以使用\n，替换为\\n作用是什么?
 
 function save (str, isString) {
   var i = saved.length

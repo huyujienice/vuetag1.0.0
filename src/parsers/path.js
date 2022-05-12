@@ -1,3 +1,7 @@
+// 这是个典型的基于状态机的手写parser
+// 你需要的背景知识是《编译原理》
+// https://jiongks.name/blog/vue-code-review/ 
+
 var _ = require('../util')
 var Cache = require('../cache')
 var pathCache = new Cache(1000)
