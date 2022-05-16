@@ -56,6 +56,8 @@ map.rect = [
   '</svg>'
 ]
 
+// http://www.w3.org/2000/svg 等是XML的命名空间
+
 /**
  * Check if a node is a supported template node with a
  * DocumentFragment content.
@@ -64,13 +66,24 @@ map.rect = [
  * @return {Boolean}
  */
 
+// TODO
+// node.content 有何意义？是否为主动设置为DocumentFragment
+
 function isRealTemplate (node) {
   return _.isTemplate(node) &&
     node.content instanceof DocumentFragment
 }
 
 var tagRE = /<([\w:]+)/
+// 匹配标签
+
 var entityRE = /&\w+;|&#\d+;|&#x[\dA-F]+;/
+// entity 实体标签
+
+
+// DocumentFragment 文档片段接口，一个没有父对象的最小文档对象。
+// 与document相比，最大的区别是DocumentFragment不是真实DOM树的一部分，
+// 它的变化不会触发DOM树的重新渲染，且不会导致性能等问题。
 
 /**
  * Convert a string template to a DocumentFragment.
@@ -80,6 +93,8 @@ var entityRE = /&\w+;|&#\d+;|&#x[\dA-F]+;/
  * @param {String} templateString
  * @return {DocumentFragment}
  */
+
+// tag 标签 wrapping 包装  wrapping strategy 包装策略
 
 function stringToFragment (templateString) {
   // try a cache hit first
@@ -106,6 +121,7 @@ function stringToFragment (templateString) {
     var suffix = wrap[2]
     var node = document.createElement('div')
 
+    // 套个头，方便取值？对
     node.innerHTML = prefix + templateString.trim() + suffix
     while (depth--) {
       node = node.lastChild
@@ -150,6 +166,8 @@ function nodeToFragment (node) {
   /* eslint-enable no-cond-assign */
     frag.appendChild(child)
   }
+  // appendChild操作会将原来属于clone节点下的子节点全部添加至frag节点上
+  // 至此完成copy一个一模一样的documentFragment节点，documentFragment节点没有性能问题
   _.trimNode(frag)
   return frag
 }
@@ -247,6 +265,8 @@ exports.clone = function (node) {
  * @param {Boolean} noSelector
  * @return {DocumentFragment|undefined}
  */
+
+// 解析template输出 DocumentFragment
 
 exports.parse = function (template, clone, noSelector) {
   var node, frag

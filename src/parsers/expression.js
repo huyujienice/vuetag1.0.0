@@ -39,6 +39,7 @@ var restoreRE = /"(\d+)"/g
 
 var pathTestRE = /^[A-Za-z_$][\w$]*(\.[A-Za-z_$][\w$]*|\['.*?'\]|\[".*?"\]|\[\d+\]|\[[A-Za-z_$][\w$]*\])*$/
 // TODO path 路径是什么意思
+// path路径解析，主要职责是把一个JSON数据里的某一个"路径"下的数据取出来
 
 var pathReplaceRE = /[^\w$\.]([A-Za-z_$][\w$]*(\.[A-Za-z_$][\w$]*|\['.*?'\]|\[".*?"\])*)/g
 

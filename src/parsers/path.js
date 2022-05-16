@@ -1,3 +1,4 @@
+// TODO
 // 这是个典型的基于状态机的手写parser
 // 你需要的背景知识是《编译原理》
 // https://jiongks.name/blog/vue-code-review/ 
@@ -6,6 +7,8 @@ var _ = require('../util')
 var Cache = require('../cache')
 var pathCache = new Cache(1000)
 var identRE = exports.identRE = /^[$_a-zA-Z]+[\w$]*$/
+
+
 
 // actions
 var APPEND = 0
@@ -26,7 +29,13 @@ var AFTER_ELEMENT = 10
 var AFTER_PATH = 11
 var ERROR = 12
 
+// IN_SINGLE_QUOTE  ->  '
+// IN_DOUBLE_QUOTE  ->  "
+
 var pathStateMachine = []
+
+// eof 为End Of File的缩写，通常表示"文字流"(stream)的结尾
+// ident 识别
 
 pathStateMachine[BEFORE_PATH] = {
   'ws': [BEFORE_PATH],

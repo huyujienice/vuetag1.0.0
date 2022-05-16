@@ -270,6 +270,8 @@ function trim (parent, node) {
  * @param {Element} el
  */
 
+// 任意自创的tag也会有tagName，在HTML文档中，tagName会返回其大写形式
+
 exports.isTemplate = function (el) {
   return el.tagName &&
     el.tagName.toLowerCase() === 'template'
