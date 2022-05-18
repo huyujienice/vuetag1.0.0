@@ -207,6 +207,8 @@ var hasTextareaCloneBug = (function () {
  * @return {Element|DocumentFragment}
  */
 
+// clone 方法手动修复cloneNode()方法关于Safari的bug和IE10/11的textarea的bug
+
 exports.clone = function (node) {
   if (!node.querySelectorAll) {
     return node.cloneNode()

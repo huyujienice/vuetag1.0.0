@@ -27,6 +27,9 @@ function noop () {}
  * @constructor
  */
 
+// directive 指令  definition 定义
+// transclusion 嵌入
+
 function Directive (descriptor, vm, el, host, scope, frag) {
   this.vm = vm
   this.el = el
