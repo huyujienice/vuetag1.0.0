@@ -8,6 +8,9 @@ var _ = require('../util')
  */
 
 exports.$on = function (event, fn) {
+  // this._events = {}  _events定义为对象，
+  // 如果添加event为函数function，则_events[key]为function的字符串
+  // event应该是自定义的字符串,例如 hook:attched，可以理解为事件名称
   (this._events[event] || (this._events[event] = []))
     .push(fn)
   modifyListenerCount(this, event, 1)
@@ -44,6 +47,7 @@ exports.$once = function (event, fn) {
 exports.$off = function (event, fn) {
   var cbs
   // all
+  // 没带参数默认全部移除
   if (!arguments.length) {
     if (this.$parent) {
       for (event in this._events) {
@@ -110,6 +114,8 @@ exports.$emit = function (event) {
  * @param {String} event
  * @param {...*} additional arguments
  */
+
+// Recursively 递归的
 
 exports.$broadcast = function (event) {
   // if no child has registered for this event,

@@ -22,6 +22,9 @@ exports._init = function (options) {
     ? this.$parent.$root
     : this
   this.$children = []
+  
+  // references 参考
+  
   this.$refs = {}       // child vm references
   this.$els = {}        // element references
   this._watchers = []   // all watchers as an array
@@ -33,6 +36,7 @@ exports._init = function (options) {
   // a flag to avoid this being observed
   this._isVue = true
 
+  // 事件记录对象
   // events bookkeeping
   this._events = {}            // registered callbacks
   this._eventsCount = {}       // for $broadcast optimization

@@ -29,6 +29,7 @@ function noop () {}
 
 // directive 指令  definition 定义
 // transclusion 嵌入
+// descriptor.def 指向 this.update，指向watcher视图更新
 
 function Directive (descriptor, vm, el, host, scope, frag) {
   this.vm = vm
@@ -64,6 +65,8 @@ function Directive (descriptor, vm, el, host, scope, frag) {
  * @param {Object} def
  */
 
+// Initialize 初始化
+
 Directive.prototype._bind = function () {
   var name = this.name
   var descriptor = this.descriptor
@@ -93,6 +96,7 @@ Directive.prototype._bind = function () {
     this.bind()
   }
 
+  // literal 字面上的
   if (this.literal) {
     this.update && this.update(descriptor.raw)
   } else if (
@@ -158,6 +162,7 @@ Directive.prototype._setupParams = function () {
   var key, val, mappedKey
   while (i--) {
     key = params[i]
+    // camelize将连字符写法转换成驼峰写法
     mappedKey = _.camelize(key)
     val = _.attr(this.el, key)
     if (val != null) {
@@ -165,6 +170,7 @@ Directive.prototype._setupParams = function () {
       this.params[mappedKey] = val === '' ? true : val
     } else {
       // dynamic
+      // getBindAttr获取设置在节点上的vue绑定的属性,通过 : 获取，如 :name='clark'
       val = _.getBindAttr(this.el, key)
       if (val != null) {
         this._setupParamWatcher(mappedKey, val)
@@ -260,6 +266,8 @@ Directive.prototype.set = function (value) {
  *
  * @param {Function} fn
  */
+
+// triggering updates 触发更新
 
 Directive.prototype._withLock = function (fn) {
   var self = this
