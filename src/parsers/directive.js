@@ -8,6 +8,10 @@ var reservedArgRE = /^in$|^-?\d+/
  * Parser state
  */
 
+// str 源字符串   dir 转换后对象
+// c 循环的下标所对应源字符串的字符 i 开始循环的下标 l 源字符串的长度 lastFilterIndex
+// inSingle ' inDouble " curly 0{ 1} square 0[ 1] paren 0( 1)
+
 var str, dir
 var c, i, l, lastFilterIndex
 var inSingle, inDouble, curly, square, paren
@@ -97,6 +101,7 @@ exports.parse = function (s) {
       // check double quote
       if (c === 0x22) inDouble = !inDouble
     } else if (
+      // 0x7c -> |
       c === 0x7C && // pipe
       str.charCodeAt(i + 1) !== 0x7C &&
       str.charCodeAt(i - 1) !== 0x7C
