@@ -36,7 +36,7 @@ exports._init = function (options) {
   // a flag to avoid this being observed
   this._isVue = true
 
-  // 事件记录对象
+  // 事件记录对象  $on绑定事件 $emit可触发
   // events bookkeeping
   this._events = {}            // registered callbacks
   this._eventsCount = {}       // for $broadcast optimization
@@ -88,6 +88,7 @@ exports._init = function (options) {
     (this._scope || this._context).$refs[options._ref] = this
   }
 
+  // this.$options是一个对象？里面有存放hook的回调函数
   // merge options.
   options = this.$options = mergeOptions(
     this.constructor.options,

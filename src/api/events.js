@@ -90,6 +90,8 @@ exports.$off = function (event, fn) {
  * @param {String} event
  */
 
+// TODO 怎么传递给parent?
+
 exports.$emit = function (event) {
   var cbs = this._events[event]
   this._shouldPropagate = !cbs

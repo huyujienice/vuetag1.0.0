@@ -152,6 +152,8 @@ function callDetach (child) {
  * @param {String} hook
  */
 
+// $options里面有存放hook的回调函数
+
 exports._callHook = function (hook) {
   var handlers = this.$options[hook]
   if (handlers) {
