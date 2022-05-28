@@ -88,7 +88,7 @@ exports._init = function (options) {
     (this._scope || this._context).$refs[options._ref] = this
   }
 
-  // this.$options是一个对象？里面有存放hook的回调函数
+  // this.$options是一个对象，里面有存放hook的回调函数
   // merge options.
   options = this.$options = mergeOptions(
     this.constructor.options,

@@ -169,6 +169,8 @@ exports._digest = function () {
  * special getter/setters
  */
 
+// essentially 本质上
+
 function noop () {}
 exports._initComputed = function () {
   var computed = this.$options.computed

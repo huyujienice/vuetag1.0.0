@@ -100,6 +100,10 @@ function register (vm, action, key, handler, options) {
  * Setup recursive attached/detached calls
  */
 
+// TODO
+// attached/detached  附加/分离
+// 在$mount时触发，绑定对应的钩子函数
+
 exports._initDOMHooks = function () {
   this.$on('hook:attached', onAttached)
   this.$on('hook:detached', onDetached)

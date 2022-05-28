@@ -37,6 +37,8 @@ var terminalDirectives = [
  * @return {Function}
  */
 
+// compile 编译 reusable 可重复使用的 composite 合成的 recursively 递归的
+
 exports.compile = function (el, options, partial) {
   // link function for the node itself.
   var nodeLinkFn = partial || !options._asComponent
