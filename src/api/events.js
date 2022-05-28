@@ -91,9 +91,14 @@ exports.$off = function (event, fn) {
  */
 
 // TODO 怎么传递给parent?
+// 使用$dispatch向父组件传递事件，使用$broadcast向子组件传递事件
+
+// 当手动$on上event的时候，其他组件想要触发event则可使用$dispatch和$broadcast
+// 找到需要触发的event并且触发
 
 exports.$emit = function (event) {
   var cbs = this._events[event]
+  // 当事件未定义则默认向上下传递，若事件已定义则默认不传递
   this._shouldPropagate = !cbs
   if (cbs) {
     cbs = cbs.length > 1
@@ -118,6 +123,7 @@ exports.$emit = function (event) {
  */
 
 // Recursively 递归的
+// 向子组件传播事件
 
 exports.$broadcast = function (event) {
   // if no child has registered for this event,
@@ -141,6 +147,8 @@ exports.$broadcast = function (event) {
  * @param {...*} additional arguments
  */
 
+// 向父组件传播事件
+
 exports.$dispatch = function () {
   this.$emit.apply(this, arguments)
   var parent = this.$parent
@@ -162,6 +170,10 @@ exports.$dispatch = function () {
  * @param {String} event
  * @param {Number} count
  */
+
+// 只设置parent的原因是可能当时还不确定有多少子组件，但是父组件是唯一且已知？
+// 将所有parent的_eventsCount[event]都设置好计数器
+// 每次执行一次$on，_eventsCount[event]都+1
 
 var hookRE = /^hook:/
 function modifyListenerCount (vm, event, count) {

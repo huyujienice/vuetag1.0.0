@@ -8,6 +8,9 @@ var eventRE = /^v-on:|^@/
  * instance's methods by name.
  */
 
+// this.$options内有events和watch，2个对象
+// 对象内所有方法都要供绑定$on和$watch
+
 exports._initEvents = function () {
   var options = this.$options
   if (options._asComponent) {
@@ -23,6 +26,8 @@ exports._initEvents = function () {
  * @param {Vue} vm
  * @param {Element} el
  */
+
+// 如果是documentFragment就将绑定在events上的v-on方法使用$on绑定?
 
 function registerComponentEvents (vm, el) {
   var attrs = el.attributes
