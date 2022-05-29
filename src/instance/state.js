@@ -40,7 +40,7 @@ exports._initProps = function () {
     // props must be linked in proper scope if inside v-for
     ? compiler.compileAndLinkProps(this, el, props, this._scope)
     : null
-}
+  }
 
 /**
  * Initialize the data.

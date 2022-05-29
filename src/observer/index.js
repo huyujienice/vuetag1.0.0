@@ -43,6 +43,8 @@ function Observer (value) {
  * @static
  */
 
+// 给一个对象创建一个观察者，并返回
+
 Observer.create = function (value, vm) {
   if (!value || typeof value !== 'object') {
     return
@@ -214,10 +216,16 @@ function copyAugment (target, src, keys) {
  * 假设这个属性键值是对象，则对这个属性值创建一个Observer的实例
  */
 
+// TODO 只有对象才能是响应式，如果是基础类型怎么处理？
+
+// 如果直接对基础类型值使用Object.defineProperty将会报错
+// 使用Observer.create的时候就直接ruturn了，不会执行到defineReactive这一步
+
 
 function defineReactive (obj, key, val) {
   var dep = new Dep()
   var childOb = Observer.create(val)
+  // 当val是对象的时候childOb才有值
   Object.defineProperty(obj, key, {
     enumerable: true,
     configurable: true,
